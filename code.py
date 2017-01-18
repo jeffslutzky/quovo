@@ -47,12 +47,11 @@ def convert_xml_to_csv(tag):
     d = {}
     for child in tag:
         if hasattr(child, "name") and not isinstance(child, NavigableString):
-            print "CHILD:"
-            try:
-                print child.contents
-            except:
-                print "no contents"
-            # print "tag.name: " + tag.name + " child.text: " + child.text
+            # only print the text if there's no deeper child:
+            if not child.find_all(True):
+                print "PARENT: ", tag.name
+                print "CHILD: ", child.name
+                print "TEXT: ", child.text, "\n"
             # d[tag.name] = child.text
             convert_xml_to_csv(child)
     # data.append(d)
@@ -69,5 +68,4 @@ xml = BeautifulSoup(txt, "xml").XML
 for tag in xml.find_all(True, recursive=False):
     convert_xml_to_csv(tag)
 
-# still need tags which have the titles
 # then convert csv to tsv
