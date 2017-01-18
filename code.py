@@ -42,10 +42,11 @@ from xmlutils.xml2csv import xml2csv
 def convert_xml_to_csv(tag):
     data = []
     get_raw_data(tag, data)
-    cw = csv.writer(open("result.csv",'wb'))
+    file = open("result.csv",'wb')
+    cw = csv.writer(file, delimiter="\t")
     for row in data:
-        print row
         cw.writerows(row.viewitems())
+    file.close()
 
 def get_raw_data(tag, data):
     cols = []
@@ -53,20 +54,15 @@ def get_raw_data(tag, data):
     for child in tag:
         if hasattr(child, "name") and not isinstance(child, NavigableString):
             if not child.find_all(True): # if there's no deeper child:
-                d[child.name] = child.text
+                print child, "XXXXX", child.parent.name
+                keyname = child.parent.name + ":" + child.name
+                if child.parent.parent:
+                    keyname = child.parent.parent.name + ":" + keyname
+                d[keyname] = child.text
             else:
                 get_raw_data(child, data)
     if d:
         data.append(d)
-
-    # print d.keys()
-    # print data
-    # cols = d.keys()
-    # # print data
-    # # cw = csv.writer(open("result.csv",'a'))
-    # # for row in data:
-    # #     cw.writerow([row.get(k, 'N/A') for k in cols])
-
 
 url = "https://www.sec.gov/Archives/edgar/data/1166559/000110465914039387/0001104659-14-039387.txt"
 txt = urllib2.urlopen(url)
@@ -74,5 +70,5 @@ xml = BeautifulSoup(txt, "xml").XML
 for tag in xml.find_all(True, recursive=False):
     convert_xml_to_csv(tag)
 
-# then convert csv to tsv
 # get other XML too!
+# create an input feature

@@ -1,26 +1,26 @@
-cik,0001166559
-ccc,XXXXXXXX
-liveTestFlag,LIVE
-periodOfReport,03-31-2014
-submissionType,13F-HR
-street1,2365 Carillon Point
-stateOrCountry,WA
-zipCode,98033
-city,Kirkland
-name,Bill  Melinda Gates Foundation Trust
-form13FFileNumber,028-10098
-isAmendment,false
-reportType,13F HOLDINGS REPORT
-reportCalendarOrQuarter,03-31-2014
-provideInfoForInstruction5,N
-city,Kirkland
-name,Michael Larson
-title,Authorized Agent
-signatureDate,05-15-2014
-stateOrCountry,WA
-phone,425-889-7900
-signature,/s/ Michael Larson
-tableValueTotal,19804623
-tableEntryTotal,20
-otherIncludedManagersCount,0
-isConfidentialOmitted,false
+filer:credentials:cik	0001166559
+filer:credentials:ccc	XXXXXXXX
+headerData:filerInfo:periodOfReport	03-31-2014
+headerData:filerInfo:liveTestFlag	LIVE
+edgarSubmission:headerData:submissionType	13F-HR
+filingManager:address:stateOrCountry	WA
+filingManager:address:city	Kirkland
+filingManager:address:zipCode	98033
+filingManager:address:street1	2365 Carillon Point
+coverPage:filingManager:name	Bill  Melinda Gates Foundation Trust
+formData:coverPage:reportCalendarOrQuarter	03-31-2014
+formData:coverPage:provideInfoForInstruction5	N
+formData:coverPage:form13FFileNumber	028-10098
+formData:coverPage:reportType	13F HOLDINGS REPORT
+formData:coverPage:isAmendment	false
+formData:signatureBlock:name	Michael Larson
+formData:signatureBlock:city	Kirkland
+formData:signatureBlock:title	Authorized Agent
+formData:signatureBlock:signature	/s/ Michael Larson
+formData:signatureBlock:phone	425-889-7900
+formData:signatureBlock:stateOrCountry	WA
+formData:signatureBlock:signatureDate	05-15-2014
+formData:summaryPage:tableEntryTotal	20
+formData:summaryPage:tableValueTotal	19804623
+formData:summaryPage:otherIncludedManagersCount	0
+formData:summaryPage:isConfidentialOmitted	false
