@@ -39,22 +39,28 @@ from xmlutils.xml2csv import xml2csv
    # if xml:
    #     convert_xml_to_csv(xml)
 
-
-
 def convert_xml_to_csv(tag):
     data = []
+    get_raw_data(tag, data)
+    cw = csv.writer(open("result.csv",'wb'))
+    for row in data:
+        print row
+        cw.writerows(row.viewitems())
+
+def get_raw_data(tag, data):
     cols = []
     d = {}
     for child in tag:
         if hasattr(child, "name") and not isinstance(child, NavigableString):
-            # only print the text if there's no deeper child:
-            if not child.find_all(True):
-                print "PARENT: ", tag.name
-                print "CHILD: ", child.name
-                print "TEXT: ", child.text, "\n"
-            # d[tag.name] = child.text
-            convert_xml_to_csv(child)
-    # data.append(d)
+            if not child.find_all(True): # if there's no deeper child:
+                d[child.name] = child.text
+            else:
+                get_raw_data(child, data)
+    if d:
+        data.append(d)
+
+    # print d.keys()
+    # print data
     # cols = d.keys()
     # # print data
     # # cw = csv.writer(open("result.csv",'a'))
@@ -62,10 +68,11 @@ def convert_xml_to_csv(tag):
     # #     cw.writerow([row.get(k, 'N/A') for k in cols])
 
 
-url = "https://www.sec.gov/Archives/edgar/data/1166559/000110465916156931/0001104659-16-156931.txt"
+url = "https://www.sec.gov/Archives/edgar/data/1166559/000110465914039387/0001104659-14-039387.txt"
 txt = urllib2.urlopen(url)
 xml = BeautifulSoup(txt, "xml").XML
 for tag in xml.find_all(True, recursive=False):
     convert_xml_to_csv(tag)
 
 # then convert csv to tsv
+# get other XML too!
