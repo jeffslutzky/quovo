@@ -39,13 +39,12 @@ def get_data(url):
 
     for url in list_of_txt_urls_to_parse:
         txt = urllib2.urlopen(url)
-        xml = BeautifulSoup(txt, "xml").XML
+        xml = BeautifulSoup(txt, "xml").edgarSubmission
         if xml:
             for tag in xml.find_all(True, recursive=False):
                 convert_xml_to_csv(xml)
 
     print "Done! Results are at result.csv in this directory."
-
 
 def get_txt_urls(link):
     detail_url = "https://www.sec.gov{}".format(link)
